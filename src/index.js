@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import ReactDOM from "react-dom";
 import Moment from "moment";
 
@@ -13,16 +13,21 @@ const convertDate = momentDate => momentDate.format("YYYY-MM-DD");
 function App() {
     const [startDate, setStartDate] = useState(convertDate(Moment()));
     const [reviewers, setReviewers] = useState({});
+    const [repo, setRepo] = useState(undefined);
 
     const maxDate = convertDate(Moment());
 
     const handleGetPRs = async () => {
-        await setPRs(startDate.toString(), setReviewers);
+        await setPRs(repo.toString(), startDate.toString(), setReviewers);
     };
+
+    const handleSelectRepo = useCallback((selectedRepo) => {
+        setRepo(selectedRepo);
+    }, [repo]);
 
     return (
         <div className="App">
-            <Repos/>
+            <Repos selected={repo} onSelect={handleSelectRepo}/>
             <input
                 type="date"
                 value={startDate}

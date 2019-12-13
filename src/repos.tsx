@@ -7,9 +7,19 @@ type Repo = {
     name: string;
 };
 
-const Repos: React.FC<{ orgName: string; token: string }> = ({orgName = "Blazemeter"}) => {
+type Props = {
+    orgName?: string;
+    selected?: string;
+    onSelect(repo: string): void;
+}
+
+const Repos: React.FC<Props> = ({selected, onSelect, orgName = "Blazemeter"}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [repos, setRepos] = useState([]);
+
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onSelect(e.target.value);
+    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -24,7 +34,7 @@ const Repos: React.FC<{ orgName: string; token: string }> = ({orgName = "Blazeme
     }
 
     return (
-        <select>
+        <select onChange={handleSelect} value={selected}>
             {repos.map((value: Repo) => {
                 return (
                     <option key={value.id} value={value.name}>
