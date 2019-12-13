@@ -4,11 +4,11 @@ import ReactDOM from "react-dom";
 import Moment from "moment";
 
 import Repos from "./repos";
-import {User} from "./user";
+import User from "./user";
 import {setPRs} from "./logic";
 import "./styles.css";
 
-const convertDate = momentDate => momentDate.format("YYYY-MM-DD");
+const convertDate = (momentDate: Moment.Moment) => momentDate.format("YYYY-MM-DD");
 
 function App() {
     const [startDate, setStartDate] = useState(convertDate(Moment()));
@@ -18,7 +18,7 @@ function App() {
     const maxDate = convertDate(Moment());
 
     const handleGetPRs = async () => {
-        await setPRs(repo.toString(), startDate.toString(), setReviewers);
+        await setPRs(repo!, startDate, setReviewers);
     };
 
     const handleSelectRepo = useCallback((selectedRepo) => {
