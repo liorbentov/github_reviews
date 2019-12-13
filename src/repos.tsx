@@ -23,7 +23,7 @@ const Repos: React.FC<{ orgName: string; token: string }> = ({
   }, [1]);
 
   if (isLoading) {
-    return "Loading...";
+    return <>"Loading..."</>;
   }
 
   return (
