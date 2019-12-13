@@ -7,10 +7,7 @@ type Repo = {
     name: string;
 };
 
-const Repos: React.FC<{ orgName: string; token: string }> = ({
-                                                                 orgName = "Blazemeter",
-                                                                 token
-                                                             }) => {
+const Repos: React.FC<{ orgName: string; token: string }> = ({orgName = "Blazemeter"}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [repos, setRepos] = useState([]);
 

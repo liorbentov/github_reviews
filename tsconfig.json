@@ -1,35 +1,46 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "esnext",
-    "target": "es5",
+    "sourceMap": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react",
     "lib": [
       "es6",
       "dom",
       "es2017",
       "es2015"
     ],
-    "sourceMap": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
+    "module": "esnext",
     "moduleResolution": "node",
-    "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "noStrictGenericChecks": true,
     "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "strict": true,
+    "noUnusedParameters": true,
+    "pretty": false,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "rootDir": "src",
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "target": "esnext",
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
