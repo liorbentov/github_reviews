@@ -20,13 +20,15 @@
     "react-select": "3.0.8"
   },
   "devDependencies": {
+    "prettier": "1.19.1",
     "typescript": "3.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier './src/**/*.{js,css,less,ts,tsx}' --write"
   },
   "browserslist": [
     ">0.2%",

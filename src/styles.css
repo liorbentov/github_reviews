@@ -1,17 +1,16 @@
 .App {
-  font-family: sans-serif;
-  text-align: center;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 .reviewer {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .pull-requests {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    justify-content: space-evenly;
 }
-

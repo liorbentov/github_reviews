@@ -1,11 +1,11 @@
-const BASE_GITHUB_API_URL = "https://api.github.com";
+const BASE_GITHUB_API_URL = 'https://api.github.com';
 const ORG_NAME = 'Blazemeter';
 
 const token = process.env.REACT_APP_PRIVATE_TOKEN;
 
 export const getData = async (url: string) => {
     const response = await fetch(url, {
-        headers: {Authorization: `Basic ${token}`}
+        headers: { Authorization: `Basic ${token}` },
     });
     return response.json();
 };
@@ -30,4 +30,3 @@ export const getUser = async (login: string) => {
     const response = await fetch(url);
     return response.json();
 };
-

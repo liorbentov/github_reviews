@@ -1,31 +1,31 @@
-import _ from "lodash";
-import Moment from "moment";
+import _ from 'lodash';
+import Moment from 'moment';
 
-import {getPRs, getReviews} from "./api";
+import { getPRs, getReviews } from './api';
 
 type PR = {
     created_at: string;
     merged_at: string;
     number: number;
     closed_at?: string;
-}
+};
 
 type Review = {
     state: string;
     user: {
         login: string;
-    }
-}
+    };
+};
 
-type GroupTuple = { [key: string]: Review[] }
+type GroupTuple = { [key: string]: Review[] };
 
 export const getPRsData = async (repo: string, startDate: string) => {
     const start = Moment(startDate);
     const data: PR[] = await getPRs(repo);
     return data
-        .filter(({created_at}) => Moment(created_at).isAfter(start))
-        .filter(({closed_at, merged_at}) => closed_at && merged_at)
-        .map(({number}) => number);
+        .filter(({ created_at }) => Moment(created_at).isAfter(start))
+        .filter(({ closed_at, merged_at }) => closed_at && merged_at)
+        .map(({ number }) => number);
 };
 
 export const setPRs = async (repo: string, startDate: string, setReviewers: ({}) => void) => {
@@ -33,7 +33,7 @@ export const setPRs = async (repo: string, startDate: string, setReviewers: ({})
     const data = await Promise.all(
         prsNumbers.map(async prNumber => {
             const reviews: Review[] = await getReviews(repo, prNumber);
-            return reviews.filter(({state}) => state === "APPROVED");
+            return reviews.filter(({ state }) => state === 'APPROVED');
         })
     );
 
