@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
-import { getRepos } from "./api";
+import {getRepos} from "./api";
 
 type Repo = {
-  id: number;
-  name: string;
+    id: number;
+    name: string;
 };
 
 const Repos: React.FC<{ orgName: string; token: string }> = ({
-  orgName = "Blazemeter",
-  token
-}) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [repos, setRepos] = useState([]);
+                                                                 orgName = "Blazemeter",
+                                                                 token
+                                                             }) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [repos, setRepos] = useState([]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getRepos(orgName, token).then(repositories => {
-      setIsLoading(false);
-      setRepos(repositories);
-    });
-  }, [1]);
+    useEffect(() => {
+        setIsLoading(true);
+        getRepos(orgName).then(repositories => {
+            setIsLoading(false);
+            setRepos(repositories);
+        });
+    }, [1]);
 
-  if (isLoading) {
-    return <>"Loading..."</>;
-  }
+    if (isLoading) {
+        return <>"Loading..."</>;
+    }
 
-  return (
-    <select>
-      {repos.map((value: Repo) => {
-        return (
-          <option key={value.id} value={value.name}>
-            {value.name}
-          </option>
-        );
-      })}
-    </select>
-  );
+    return (
+        <select>
+            {repos.map((value: Repo) => {
+                return (
+                    <option key={value.id} value={value.name}>
+                        {value.name}
+                    </option>
+                );
+            })}
+        </select>
+    );
 };
 
 export default Repos;
