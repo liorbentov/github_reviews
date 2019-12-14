@@ -8,7 +8,7 @@ type Props = {
     onClick(): void;
     className?: string;
     disabled?: boolean;
-}
+};
 
 const InteractiveButton: React.FC<Props> = (props: Props) => {
     if (props.isLoading) {
@@ -27,7 +27,11 @@ const InteractiveButton: React.FC<Props> = (props: Props) => {
         );
     }
 
-    return <Button disabled={props.disabled} className={props.className} onClick={props.onClick}>{props.text}</Button>
+    return (
+        <Button disabled={props.disabled} className={props.className} onClick={props.onClick}>
+            {props.text}
+        </Button>
+    );
 };
 
 export default InteractiveButton;

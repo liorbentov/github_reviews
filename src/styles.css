@@ -24,7 +24,8 @@
     justify-content: space-evenly;
 }
 
-.repository-picker, .date-picker {
+.repository-picker,
+.date-picker {
     align-items: flex-start;
     display: flex;
     flex-flow: column;
