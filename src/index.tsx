@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import Button from 'react-bootstrap/Button';
 import Moment from 'moment';
 import React, {useCallback, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 import DatePicker, {convertDate} from "./date-picker";
+import InteractiveButton from "./interactive-button";
 import Repos from './repos';
 import User from './user';
 import {setPRs} from './logic';
@@ -14,9 +14,12 @@ function App() {
     const [startDate, setStartDate] = useState(convertDate(Moment()));
     const [reviewers, setReviewers] = useState({});
     const [repo, setRepo] = useState(undefined);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleGetPRs = async () => {
+        setIsLoading(true);
         await setPRs(repo!, startDate, setReviewers);
+        setIsLoading(false);
     };
 
     const handleSelectRepo = useCallback(
@@ -31,9 +34,10 @@ function App() {
             <section className="justify-content-center row">
                 <Repos selected={repo} onSelect={handleSelectRepo}/>
                 <DatePicker startDate={startDate} onChange={setStartDate}/>
-                <Button className="mx-3" onClick={handleGetPRs} disabled={!repo}>Get PRs</Button>
+                <InteractiveButton isLoading={isLoading} text="Get PRs" onClick={handleGetPRs} className="mx-3 col-1"
+                                   disabled={!repo}/>
             </section>
-            <section className="container">
+            <section className="container reviewers-container">
                 {_.size(reviewers) > 0 && (
                     <>
                         {_.map(reviewers, (value, key) => {
@@ -41,7 +45,6 @@ function App() {
                         })}
                     </>
                 )}
-                <User username="liorbentov" prs={[]}/>
             </section>
         </div>
     );
