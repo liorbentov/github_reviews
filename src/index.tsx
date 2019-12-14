@@ -4,19 +4,16 @@ import Moment from 'moment';
 import React, {useCallback, useState} from 'react';
 import ReactDOM from 'react-dom';
 
+import DatePicker, {convertDate} from "./date-picker";
 import Repos from './repos';
 import User from './user';
 import {setPRs} from './logic';
 import './styles.css';
 
-const convertDate = (momentDate: Moment.Moment) => momentDate.format('YYYY-MM-DD');
-
 function App() {
     const [startDate, setStartDate] = useState(convertDate(Moment()));
     const [reviewers, setReviewers] = useState({});
     const [repo, setRepo] = useState(undefined);
-
-    const maxDate = convertDate(Moment());
 
     const handleGetPRs = async () => {
         await setPRs(repo!, startDate, setReviewers);
@@ -31,21 +28,20 @@ function App() {
 
     return (
         <div className="App">
-            <Repos selected={repo} onSelect={handleSelectRepo}/>
-            <input
-                type="date"
-                value={startDate}
-                max={maxDate}
-                onChange={e => setStartDate(e.target.value)}
-            />
-            <Button onClick={handleGetPRs}>Get PRs</Button>
-            {_.size(reviewers) > 0 && (
-                <>
-                    {_.map(reviewers, (value, key) => {
-                        return <User username={key} prs={value} key={key}/>;
-                    })}
-                </>
-            )}
+            <section>
+                <Repos selected={repo} onSelect={handleSelectRepo}/>
+                <DatePicker startDate={startDate} onChange={setStartDate}/>
+                <Button onClick={handleGetPRs} disabled={!repo}>Get PRs</Button>
+            </section>
+            <section>
+                {_.size(reviewers) > 0 && (
+                    <>
+                        {_.map(reviewers, (value, key) => {
+                            return <User username={key} prs={value} key={key}/>;
+                        })}
+                    </>
+                )}
+            </section>
         </div>
     );
 }

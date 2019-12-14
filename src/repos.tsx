@@ -43,16 +43,19 @@ const Repos: React.FC<Props> = ({selected, onSelect, orgName = 'Blazemeter'}) =>
     }));
 
     return (
-        <Select
-            isLoading={isLoading}
-            isSearchable={true}
-            onChange={handleSelect}
-            value={options.filter(({name}) => name === selected)}
-            getOptionLabel={({name}) => name}
-            getOptionValue={({name}) => name}
-            options={options}
-            styles={customStyles}
-        />
+        <div className="repository-picker">
+            <h4>Repository:</h4>
+            <Select
+                isLoading={isLoading}
+                isSearchable={true}
+                onChange={handleSelect}
+                value={options.filter(({name}) => name === selected)}
+                getOptionLabel={({name}) => name}
+                getOptionValue={({name}) => name}
+                options={options}
+                styles={customStyles}
+            />
+        </div>
     );
 };
 

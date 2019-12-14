@@ -1,6 +1,11 @@
 .App {
     font-family: sans-serif;
     text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.App > section {
     display: flex;
 }
 
@@ -14,4 +19,10 @@
     flex-wrap: wrap;
     width: 300px;
     justify-content: space-evenly;
+}
+
+.repository-picker, .date-picker {
+    align-items: flex-start;
+    display: flex;
+    flex-flow: column;
 }
