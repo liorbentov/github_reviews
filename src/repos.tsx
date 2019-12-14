@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Select, { ActionMeta, OptionsType, ValueType } from 'react-select';
+import React, {CSSProperties, useEffect, useState} from 'react';
+import Select, {ActionMeta, OptionsType, ValueType} from 'react-select';
 
-import { getRepos } from './api';
+import {getRepos} from './api';
 
 type Repo = {
     id: number;
@@ -14,7 +14,14 @@ type Props = {
     onSelect(repo: string | null): void;
 };
 
-const Repos: React.FC<Props> = ({ selected, onSelect, orgName = 'Blazemeter' }) => {
+const customStyles = {
+    control: (provided: CSSProperties) => ({
+        ...provided,
+        width: 200,
+    }),
+};
+
+const Repos: React.FC<Props> = ({selected, onSelect, orgName = 'Blazemeter'}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [repos, setRepos] = useState([]);
 
@@ -28,11 +35,7 @@ const Repos: React.FC<Props> = ({ selected, onSelect, orgName = 'Blazemeter' }) 
             setIsLoading(false);
             setRepos(repositories);
         });
-    }, [1]);
-
-    if (isLoading) {
-        return <>Loading...</>;
-    }
+    }, [orgName]);
 
     const options: OptionsType<Repo> = repos.map((repo: Repo) => ({
         id: repo.id,
@@ -41,12 +44,14 @@ const Repos: React.FC<Props> = ({ selected, onSelect, orgName = 'Blazemeter' }) 
 
     return (
         <Select
+            isLoading={isLoading}
             isSearchable={true}
             onChange={handleSelect}
-            value={options.filter(({ name }) => name === selected)}
-            getOptionLabel={({ name }) => name}
-            getOptionValue={({ name }) => name}
+            value={options.filter(({name}) => name === selected)}
+            getOptionLabel={({name}) => name}
+            getOptionValue={({name}) => name}
             options={options}
+            styles={customStyles}
         />
     );
 };
