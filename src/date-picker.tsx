@@ -17,8 +17,8 @@ const DatePicker: React.FC<Props> = ({startDate, onChange}) => {
     };
 
     return (
-        <div className="date-picker">
-            <h4>Start Date:</h4>
+        <div className="date-picker px-3">
+            <span>Start Date:</span>
             <FormControl value={startDate} onChange={handleChangeDate} max={maxDate} type="date"/>
         </div>
     )

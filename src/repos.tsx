@@ -43,8 +43,8 @@ const Repos: React.FC<Props> = ({selected, onSelect, orgName = 'Blazemeter'}) =>
     }));
 
     return (
-        <div className="repository-picker">
-            <h4>Repository:</h4>
+        <div className="repository-picker px-3">
+            <span>Repository:</span>
             <Select
                 isLoading={isLoading}
                 isSearchable={true}

@@ -27,13 +27,13 @@ function App() {
     );
 
     return (
-        <div className="App">
-            <section>
+        <div className="App container-fluid">
+            <section className="justify-content-center row">
                 <Repos selected={repo} onSelect={handleSelectRepo}/>
                 <DatePicker startDate={startDate} onChange={setStartDate}/>
-                <Button onClick={handleGetPRs} disabled={!repo}>Get PRs</Button>
+                <Button className="mx-3" onClick={handleGetPRs} disabled={!repo}>Get PRs</Button>
             </section>
-            <section>
+            <section className="container">
                 {_.size(reviewers) > 0 && (
                     <>
                         {_.map(reviewers, (value, key) => {
@@ -41,6 +41,7 @@ function App() {
                         })}
                     </>
                 )}
+                <User username="liorbentov" prs={[]}/>
             </section>
         </div>
     );
