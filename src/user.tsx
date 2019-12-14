@@ -19,9 +19,9 @@ export const User: React.FC<userPRs> = ({username, prs}) => {
     return (
         <div className="reviewer row mb-2">
             <Avatar githubHandle={username} round="10px"/>
-            <span className="col">{username}</span>
-            <span className="col">{prs.length}</span>
-            <section className="pull-requests col">
+            <span className="col-2">{username}</span>
+            <span className="col-1">{prs.length}</span>
+            <section className="pull-requests col-6">
                 {prs.map(({id, pull_request_url}) => {
                     return <PR key={id} url={pull_request_url}/>;
                 })}
