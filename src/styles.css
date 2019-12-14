@@ -2,11 +2,6 @@
     font-family: sans-serif;
 }
 
-.App > section {
-    display: flex;
-    align-items: flex-end;
-}
-
 .reviewers-container {
     display: flex;
     flex-flow: column;
