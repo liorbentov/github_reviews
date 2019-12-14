@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import Button from 'react-bootstrap/Button';
+import Moment from 'moment';
 import React, {useCallback, useState} from 'react';
 import ReactDOM from 'react-dom';
-import Moment from 'moment';
 
 import Repos from './repos';
 import User from './user';
@@ -37,7 +38,7 @@ function App() {
                 max={maxDate}
                 onChange={e => setStartDate(e.target.value)}
             />
-            <button onClick={handleGetPRs}>Get PRs</button>
+            <Button onClick={handleGetPRs}>Get PRs</Button>
             {_.size(reviewers) > 0 && (
                 <>
                     {_.map(reviewers, (value, key) => {
