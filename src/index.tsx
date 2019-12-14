@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Moment from 'moment';
 
 import Repos from './repos';
 import User from './user';
-import { setPRs } from './logic';
+import {setPRs} from './logic';
 import './styles.css';
 
 const convertDate = (momentDate: Moment.Moment) => momentDate.format('YYYY-MM-DD');
@@ -25,12 +25,12 @@ function App() {
         selectedRepo => {
             setRepo(selectedRepo);
         },
-        [repo]
+        []
     );
 
     return (
         <div className="App">
-            <Repos selected={repo} onSelect={handleSelectRepo} />
+            <Repos selected={repo} onSelect={handleSelectRepo}/>
             <input
                 type="date"
                 value={startDate}
@@ -41,7 +41,7 @@ function App() {
             {_.size(reviewers) > 0 && (
                 <>
                     {_.map(reviewers, (value, key) => {
-                        return <User username={key} prs={value} key={key} />;
+                        return <User username={key} prs={value} key={key}/>;
                     })}
                 </>
             )}
@@ -50,4 +50,4 @@ function App() {
 }
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App/>, rootElement);
