@@ -2,16 +2,6 @@
     font-family: 'Lato', sans-serif;
 }
 
-.reviewers-container {
-    display: flex;
-    flex-flow: column;
-}
-
-.reviewer {
-    display: flex;
-    align-items: center;
-}
-
 .pull-requests {
     display: flex;
     flex-wrap: wrap;
@@ -24,4 +14,9 @@
     align-items: flex-start;
     display: flex;
     flex-flow: column;
+}
+
+.reviewers-table thead th {
+    position: sticky;
+    top: 90px;
 }

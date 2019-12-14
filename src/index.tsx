@@ -1,18 +1,18 @@
-import _ from 'lodash';
 import Moment from 'moment';
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import DatePicker, {convertDate} from './date-picker';
+import DatePicker, { convertDate } from './date-picker';
 import InteractiveButton from './interactive-button';
 import Repos from './repos';
-import User from './user';
-import {setPRs} from './logic';
+import ReviewersTable from './reviewers-table';
+import { userPRs } from './user';
+import { setPRs } from './logic';
 import './styles.css';
 
 function App() {
     const [startDate, setStartDate] = useState(convertDate(Moment()));
-    const [reviewers, setReviewers] = useState({});
+    const [reviewers, setReviewers] = useState([] as userPRs[]);
     const [repo, setRepo] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -29,8 +29,8 @@ function App() {
     return (
         <div className="App container-fluid">
             <section className="justify-content-center row align-items-end sticky-top bg-light mb-3 p-3">
-                <Repos selected={repo} onSelect={handleSelectRepo}/>
-                <DatePicker startDate={startDate} onChange={setStartDate}/>
+                <Repos selected={repo} onSelect={handleSelectRepo} />
+                <DatePicker startDate={startDate} onChange={setStartDate} />
                 <InteractiveButton
                     isLoading={isLoading}
                     text="Get PRs"
@@ -40,17 +40,11 @@ function App() {
                 />
             </section>
             <section className="container reviewers-container">
-                {_.size(reviewers) > 0 && (
-                    <>
-                        {_.map(reviewers, (value, key) => {
-                            return <User username={key} prs={value} key={key}/>;
-                        })}
-                    </>
-                )}
+                <ReviewersTable reviewers={reviewers} />
             </section>
         </div>
     );
 }
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<App/>, rootElement);
+ReactDOM.render(<App />, rootElement);

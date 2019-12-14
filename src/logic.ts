@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Moment from 'moment';
 
 import { getPRs, getReviews } from './api';
+import { userPRs } from './user';
 
 type PR = {
     created_at: string;
@@ -28,7 +29,17 @@ export const getPRsData = async (repo: string, startDate: string) => {
         .map(({ number }) => number);
 };
 
-export const setPRs = async (repo: string, startDate: string, setReviewers: ({}) => void) => {
+type setPRsParams = {
+    repo: string;
+    startDate: string;
+    setReviewers(arr: userPRs[]): void;
+};
+
+export const setPRs = async (
+    repo: string,
+    startDate: string,
+    setReviewers: setPRsParams['setReviewers']
+) => {
     const prsNumbers = await getPRsData(repo, startDate.toString());
     const data = await Promise.all(
         prsNumbers.map(async prNumber => {
@@ -57,5 +68,10 @@ export const setPRs = async (repo: string, startDate: string, setReviewers: ({})
             return acc;
         }, {});
 
-    setReviewers(sorted);
+    const sortedArray = _.map(sorted, (value, key) => ({
+        username: key,
+        prs: value,
+    }));
+
+    setReviewers(sortedArray);
 };
