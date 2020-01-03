@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --watchAll=false --passWithNoTests=true --env=jsdom",
     "eject": "react-scripts eject",
     "prettier": "prettier './src/**/*.{js,css,less,ts,tsx}' --write"
   },
