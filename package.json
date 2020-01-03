@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
+  "private": true,
   "main": "src/index.tsx",
   "dependencies": {
     "@types/jest": "24.0.25",
