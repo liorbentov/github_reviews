@@ -14,6 +14,9 @@ type Props = {
     onSelect(repo: string | null): void;
 };
 
+/**
+* Styles for the Select component
+*/
 const customStyles = {
     control: (provided: CSSProperties) => ({
         ...provided,
