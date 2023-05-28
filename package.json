@@ -23,7 +23,7 @@
     "react-select": "3.0.8"
   },
   "devDependencies": {
-    "prettier": "1.19.1",
+    "prettier": "2.8.8",
     "typescript": "3.7.3"
   },
   "scripts": {
